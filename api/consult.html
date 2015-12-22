@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SH - Consultations</title>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="cwApp.js"></script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+  </head>
+  
+  <body>
+
+	<div data-ng-app="cwApp">
+  
+	<ul class="nav nav-tabs">
+	  <li role="presentation" onclick="location.href='login.html'" ><a href="#">Login page</a></li>
+	  <li role="presentation" class="active"><a href="#">Consultations</a></li>
+	</ul>
+
+	<div class="jumbotron">
+		<div class="row">
+		
+			<div class="col-xs-6 col-md-1" >
+			</div>
+		  
+			<div class="col-xs-6 col-md-6" >
+				<h1>SomeHospital</h1> 
+				<p>SomeHospital is the most popular hospital in SomeCity</p> 
+				<div align="left" >
+				<button class="btn btn-primary" onclick="location.href='login.html'">Home</button>
+				</div>
+			</div>
+			
+			<div class="col-xs-6 col-md-4" > 
+				<br><br><br><br><br><br>
+				<div style="float: right;"><IMG SRC="doc.gif" width="60" height="60" > Dr. Smith</div>
+			</div>
+			
+			<div class="col-xs-6 col-md-1" >
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="row">
+	
+		<div class="col-xs-6 col-md-1" >
+		</div>
+		
+	  
+		<div class="col-xs-6 col-md-3" >
+			<h1>Waiting list</h1> <br>
+			
+			
+			<table ng-controller="patientsCtrl">
+				<tr data-ng-repeat="p in patients | orderBy:'name'">
+					<td>{{ p.name }}</td>
+				</tr>
+			</table>
+			
+			<a href="patient.html">Patient A</a></br>
+			<a href="patient.html">Patient B</a></br>
+			<a href="patient.html">Patient C</a></br>			
+			
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+		
+		<div class="col-xs-12 col-sm-6 col-md-6">
+		
+			<h1>Insurance Requirements</h1> <br>
+	  
+			<div class="panel panel-primary">
+				<div class="panel-heading">Pending</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+					<table>
+					<!-- Insert table! -->
+					</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">Requested</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+					<table >
+					<!-- Insert table! -->
+					</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">Approved</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+					<table >
+					<!-- Insert table! -->
+					</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading">Rejected</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+					<table >
+					<!-- Insert table! -->
+					</table>
+					</div>
+				</div>
+			</div>
+		
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	
+
+	
+		
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	</div>
+	
+	</div>
+	
+  </body>
+  
+</html>

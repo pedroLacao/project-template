@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SH - Patient file</title>
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> 
+	<script src="cwApp.js"> </script>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+	
+  </head>
+  
+  <body>
+  
+	<ul class="nav nav-tabs">
+	  <li role="presentation" onclick="location.href='login.html'" ><a href="#">Login page</a></li>
+	  <li role="presentation" onclick="location.href='consult.html'" ><a href="#">Consultations</a></li>
+	  <li role="presentation" class="active"><a href="#">Patient file</a></li>
+	</ul>
+
+	<div class="jumbotron">
+		<div class="row">
+		
+			<div class="col-xs-6 col-md-1" >
+			</div>
+		  
+			<div class="col-xs-6 col-md-6" >
+				<h1>SomeHospital</h1> 
+				<p>SomeHospital is the most popular hospital in SomeCity</p> 
+				<div align="left" >
+				<button class="btn btn-primary" onclick="location.href='login.html'">Home</button>
+				<button class="btn btn-primary" onclick="location.href='consult.html'"> << Back</button>
+				</div>
+			</div>
+			
+			<div class="col-xs-6 col-md-4" > 
+				<br><br><br><br><br><br>
+				<div style="float: right;"><IMG SRC="doc.gif" width="60" height="60" > Dr. Smith</div>
+			</div>
+			
+			<div class="col-xs-6 col-md-1" >
+			</div>
+
+		</div>
+	</div>
+	
+	<div class="row">
+	
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	  
+		<div class="col-xs-6 col-md-3" >
+			<h1>Patient Data</h1> <br>
+			
+			<p> Name: Maria Catarina dos Santos Neves</p>
+			<p> Age: 67 years</p>
+			<p> Policy ID: IP0001</p>
+			
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+		
+		<div class="col-xs-12 col-sm-6 col-md-6">
+
+			<h1>Medical Acts</h1> <br>
+			
+			
+			<div class="table-responsive">
+				<table class="table table-bordered">
+				  <thead style="background-color:darkgrey";>
+				  <!-- or  #237FDB -->
+					<tr style="color:white">
+					  <th>Description</th>
+					  <th>Cost</th>
+					  <th>Refund</th>
+					  <th>%</th>
+					</tr>
+				  </thead>
+				  <tbody>
+					<tr>
+					  <th scope="row">X-Ray</th>
+					  <td>180</td>
+					  <td>75</td>
+					  <td>-</td>
+					</tr>
+					<tr>
+					  <th scope="row">CT Scan</th>
+					  <td>100</td>
+					  <td>80</td>
+					  <td>-</td>
+					</tr>
+				  </tbody>
+				</table>
+			</div>
+								
+					
+			<br>
+			<div align="center">
+				<button  style="width:150px" type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				</button>
+			</div>
+			
+			<br><br>
+			<div align="right">
+				<button style="width:150px" type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Submit
+				</button>
+				<button style="width:150px" type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+				</button>
+			</div>
+		
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	
+
+	
+		
+	
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+	
+	</div>
+
+	
+  </body>
+  
+</html>
