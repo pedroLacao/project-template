@@ -19,6 +19,8 @@
   
   <body>
   
+	<div data-ng-app="cwApp">
+  
 	<ul class="nav nav-tabs">
 	  <li role="presentation" onclick="location.href='login.html'" ><a href="#">Login page</a></li>
 	  <li role="presentation" onclick="location.href='consult.html'" ><a href="#">Consultations</a></li>
@@ -69,39 +71,38 @@
 		</div>
 		
 		<div class="col-xs-12 col-sm-6 col-md-6">
-
-			<h1>Medical Acts</h1> <br>
 			
-			
-			<div class="table-responsive">
-				<table class="table table-bordered">
-				  <thead style="background-color:darkgrey";>
-				  <!-- or  #237FDB -->
-					<tr style="color:white">
-					  <th>Description</th>
-					  <th>Cost</th>
-					  <th>Refund</th>
-					  <th>%</th>
-					</tr>
-				  </thead>
-				  <tbody>
-					<tr>
-					  <th scope="row">X-Ray</th>
-					  <td>180</td>
-					  <td>75</td>
-					  <td>-</td>
-					</tr>
-					<tr>
-					  <th scope="row">CT Scan</th>
-					  <td>100</td>
-					  <td>80</td>
-					  <td>-</td>
-					</tr>
-				  </tbody>
-				</table>
-			</div>
-								
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1>Medical Acts</h1>
+					<div align="right"> 
+					<p>Search: <input type="text" style="color:black" data-ng-model="actN"> </p>
+					</div>
 					
+				</div>
+				<div class="panel-body">
+
+			<table ng-controller="actsCtrl" class="table-responsive" class="fixed">
+				<col width="70px" />
+				<col width="200px" />
+				<col width="70px" />
+				<thead>
+				  <!-- or  #237FDB -->
+					<tr height="30">
+					  <th>Act ID</th>
+					  <th>Name</th>
+					  <th>Cost</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="a in acts | orderBy:'actID' | filter: actN" height="30">
+					<td>{{ a.actID }}</td>
+					<td>{{ a.name }}</td>
+					<td>{{ a.cost }}</td>
+				</tr>
+				</tbody>
+			</table>
+				</div>	
 			<br>
 			<div align="center">
 				<button  style="width:150px" type="button" class="btn btn-default btn-lg">
@@ -135,7 +136,7 @@
 	
 	</div>
 
-	
+	</div>
   </body>
   
 </html>

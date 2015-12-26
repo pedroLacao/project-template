@@ -14,7 +14,7 @@ exports.getPatients = function handler(request, reply){
 	reply(bl.getPatients());
 }
 
-exports.getRequirements = function handler(request, reply){
+experts.getRequirements = function handler(request, reply){
 	reply(bl.getRequirements());
 }
 

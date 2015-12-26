@@ -12,10 +12,6 @@ exports.getRequirements = function(){
 	return requirements;
 }
 
-exports.verifyCredentials = function(user, pass){
-	
-}
-
 exports.sayHello = function (name) {
   return 'Hello ' + (name || 'World')
 }
