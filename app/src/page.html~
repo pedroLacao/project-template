@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="content-type" content="text/html:charset=iso-8859-1">
+		<meta name="author" content="CW Test">
+		
+		<title>SomeHospital</title>
+		
+		<!-- Bootstrap -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+		<script src="/js/cwApp.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	</head>
+	
+	<body>
+		<div data-ng-app="cwApp" ng-controller="patientsCtrl">
+	
+		<div class="jumbotron" style="height:300px">
+			<div class="row">
+				<div class="col-xs-6 col-md-1" >
+				</div>
+				<div class="col-xs-6 col-md-10" >
+					<h1>SomeHospital</h1> 
+					<p>SomeHospital is the most popular hospital in SomeCity</p> 
+					<br><br>
+					<button ng-show="cons||pat||med" class="btn btn-primary" ng-click="logi=false;cons=false;pat=false;med=false">Home</button>
+					<button ng-show="pat" class="btn btn-primary" ng-click="logi=true;cons=true;pat=false">Back</button>
+					<div ng-show="cons||pat||med" align="right">
+					<p> Welcome, {{title}} {{docname}} </p>
+					</div>			
+				</div>
+				<div class="col-xs-6 col-md-1" >
+				</div>
+			</div>
+		</div>
+		
+
+			
+		<div ng-hide="logi">  
+			<div align="center">
+				<h1>Insert login information</h1> <br>
+				<form class="form-inline">
+				  <div class="form-group">
+					<input type="text" class="form-control" id="username" placeholder="Username" name="username" data-ng-model="username">
+				  </div> <br> <br> 
+				  <div class="form-group">
+					<input type="password" class="form-control" id="password" placeholder="Password" name="password" data-ng-model="password">
+				  </div> <br> <br> <br>
+				  <div class="checkbox">
+					<label>
+					  <input type="checkbox" > Remember me
+					</label> <br>
+				  </div> <br> <br>
+				</form>
+				<button class="btn btn-primary" ng-click="enter(username,password)">Log in</button><br><br><br>
+
+				<div ng-show="err" class="alert alert-danger" role="alert" style="width: 200px">
+				  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+				  <span class="sr-only">Error:</span>
+				  Invalid login. Try again.
+				</div> 
+
+			</div> 
+		</div>
+
+		<div ng-show="med" align="center"> <br>
+			<h1> Mediator page -- not developed.</h1>
+		</div>
+
+		
+		<div class="row" ng-show="cons">
+	
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	  
+		<div class="col-xs-6 col-md-3" >			
+
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h1>Waiting list</h1>
+					<div align="right"> 
+					<p>Search: <input type="text" style="color:black" data-ng-model="patN"> </p>
+					</div>
+					
+				</div>
+				<div class="panel-body">
+					
+					<table style="overflow-x:auto;" class="table table-hover">
+						<tr>
+						<th>ID</th>
+						<th>Name</th>
+						</tr>
+						<tr class='clickable-row' data-ng-repeat="p in patients | filter: patN" ng-click="tothird(p.name, p.patID)" >
+						<td>{{p.patID }}</td><td>{{p.name}}</td>
+						</tr>
+					</table>
+
+					<br>					
+				</div>
+			</div>			
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+		
+		<div class="col-xs-12 col-sm-6 col-md-6">
+		
+			<h1>Insurance Requirements</h1><br>
+	  
+			<div class="panel panel-default">
+				<div class="panel-heading"><p>PENDING</p> </div>
+				<div class="panel-body">
+					<table class="table-responsive" class="fixed">
+						<col width="120px" />
+						<col width="120px" />
+						<col width="120px" />
+						<thead>
+						  <!-- or  #237FDB -->
+							<tr height="30">
+							  <th>Request ID</th>
+							  <th>Report ID</th>
+							  <th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in requirements | filter: r.status='PENDING' | orderBy:'patID'">
+							<td>{{ r.reqID }}</td>
+							<td>{{ r.repID }}</td>
+							<td>{{ r.status }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><p>REJECTED</p> </div>
+				<div class="panel-body">
+					<table class="table-responsive" class="fixed">
+						<col width="120px" />
+						<col width="120px" />
+						<col width="120px" />
+						<thead>
+						  <!-- or  #237FDB -->
+							<tr height="30">
+							  <th>Request ID</th>
+							  <th>Report ID</th>
+							  <th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in requirements | filter: r.status='REJECTED' | orderBy:'patID'">
+							<td>{{ r.reqID }}</td>
+							<td>{{ r.repID }}</td>
+							<td>{{ r.status }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><p>REQUESTED</p> </div>
+				<div class="panel-body">
+					<table class="table-responsive" class="fixed">
+						<col width="120px" />
+						<col width="120px" />
+						<col width="120px" />
+						<thead>
+						  <!-- or  #237FDB -->
+							<tr height="30">
+							  <th>Request ID</th>
+							  <th>Report ID</th>
+							  <th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in requirements | filter: r.status='REQUESTED' | orderBy:'patID'">
+							<td>{{ r.reqID }}</td>
+							<td>{{ r.repID }}</td>
+							<td>{{ r.status }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+			<div class="panel panel-default">
+				<div class="panel-heading"><p>ACCEPTED</p> </div>
+				<div class="panel-body">
+					<table class="table-responsive" class="fixed">
+						<col width="120px" />
+						<col width="120px" />
+						<col width="120px" />
+						<thead>
+						  <!-- or  #237FDB -->
+							<tr height="30">
+							  <th>Request ID</th>
+							  <th>Report ID</th>
+							  <th>Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="r in requirements| filter: r.status='ACCEPTED' | orderBy:'patID'">
+							<td>{{ r.reqID }}</td>
+							<td>{{ r.repID }}</td>
+							<td>{{ r.status }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		
+		</div>
+		
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	
+
+
+	
+	</div>
+
+
+
+
+	<div class="row" ng-show="pat">
+
+		<div class="col-xs-6 col-md-1" >
+		</div>
+	  
+		<div class="col-xs-6 col-md-3" >
+			
+			<div ng-repeat="p in patients | filter: p.name = patname">
+			<h1> Patient: {{p.name}} </h1>
+			<p> Patient ID: {{p.patID}} </p>
+			<p> Policy number: {{p.policy_number}} </p>
+			<p> Policy type: {{p.policy_type}} </p>
+			</div>
+				
+		</div>
+
+		<div class="col-xs-6 col-md-1" >
+		</div>
+
+		<div class="col-xs-12 col-sm-6 col-md-6">
+
+	  
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h1>Medical Acts</h1>
+					<div align="right"> 
+					<p>Search: <input type="text" style="color:black" data-ng-model="actN"> </p>
+					</div>					
+				</div>
+
+				<div class="panel-body">
+
+					<table class="table-responsive" class="fixed">
+					<col width="70px" />
+					<col width="200px" />
+					<col width="70px" />
+					<col width="70px" />
+					<thead>
+					  <!-- or  #237FDB -->
+						<tr height="30">
+						  <th>Act ID</th>
+						  <th>Name</th>
+						  <th>Cost</th>
+						  <th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="j in jacts | filter: patname" height="30">
+						<td>{{ j.actID }}</td>
+						<td>{{ j.name }}</td>
+						<td>{{ j.cost }}</td>
+						<td><button class="btn btn-default btn-xs" ng-click="removeRow(j.name)" style="width:50px">-</button></td>
+					</tr>
+					</tbody>
+					</table> <br> <br>
+
+
+
+
+
+				</div>	
+				<br>
+	
+
+				<div align="center">
+					<button type="button" style="width:150px" class="btn btn-default btn-lg" data-toggle="modal" data-target="#myModal">
+						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+					</button>
+
+					<!-- Modal -->
+					<div id="myModal" class="modal fade" role="dialog">
+					  <div class="modal-dialog">
+
+					    <!-- Modal content-->
+					    <div class="modal-content">
+					      <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Add Medical Act</h4>
+					      </div>
+					      <div class="modal-body">
+
+
+						<table style="overflow-x:auto;" class="table table-hover">
+							<tr>
+							<th>ID</th>
+							<th>Name</th>
+							</tr>
+							<tr class='clickable-row' data-ng-repeat="la in listacts" ng-click="addRow(la.actID, la.actID, la.name, la.cost)" >
+							<td>{{la.actID }}</td><td>{{la.name}}</td>
+							</tr>
+						</table>
+
+
+
+
+
+					      </div>
+					      <div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					      </div>
+					    </div>
+
+					  </div>
+					</div>
+
+				</div><br><br>
+			</div>
+			
+			<br>
+			<div align="right">
+				<button style="width:150px" type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-check" aria-hidden="true"></span> Submit
+				</button>
+				<button style="width:150px" type="button" class="btn btn-default btn-lg">
+				<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+				</button>
+			</div>
+
+		</div>
+
+		<div class="col-xs-6 col-md-1" >
+		</div>
+
+
+	</div>
+
+
+			
+		</div>
+
+	</body>
+	
+</html>
